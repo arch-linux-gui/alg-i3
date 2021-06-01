@@ -120,6 +120,7 @@ polkit
 lxsession
 feh
 picom
+paru
 
 #Installer
 grub
