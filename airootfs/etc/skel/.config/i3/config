@@ -173,6 +173,7 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+#Gaps. Provide Gaps to Windows.
 gaps inner 10
 
 bindsym $mod+r mode "resize"
@@ -183,16 +184,26 @@ bar {
         status_command i3status
 }
 
+#Polkit
 exec --no-startup-id /usr/bin/lxpolkit
 
-#display wallpaper
+#Display Wallpaper
 exec_always feh --bg-fill /usr/share/backgrounds/i3/wall.png
+
+#Compositor. This helps in transparency and fading.
+exec_always picom -f
 
 #Lock Screen
 bindsym $mod+x exec i3lock
 
-#Assign Programs to respective workspaces
+# Launch a program on a certain workspace, from dmenu (which may or may not have a keybinding)
+# for_window [class="nameofapp"] move to workspace $wsno
 for_window [class="firefox"] move to workspace $ws5
 
-#Compositor
-exec_always picom -f
+
+# Here the programs are to be launched with a defined keybinding, on a certain workspace. Difference from above method is
+#1) You have a keybinding
+#2) You end up in that workspace.
+#Assign Programs to respective workspaces.
+bindsym $mod+b workspace 5; exec firefox
+

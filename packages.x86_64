@@ -102,25 +102,29 @@ xfsprogs
 xl2tpd
 zsh
 
-#Arch Linux GUI i3
+#Arch Linux GUI i3 core
 xorg-server
 xorg-xrandr
+xdg-user-dirs
+bash-completion
+networkmanager
+network-manager-applet
+lightdm-gtk-greeter
+
+#Arch Linux GUI i3wm
 i3-gaps
 i3blocks
 i3lock
 i3status
 kitty
 dmenu
-lightdm-gtk-greeter
-xdg-user-dirs
-bash-completion
-networkmanager
 neofetch
 polkit
 lxsession
 feh
 picom
 paru
+lxappearance
 
 #Installer
 grub
