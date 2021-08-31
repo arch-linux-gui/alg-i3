@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 14
+font pango:monospace 15
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -24,7 +24,7 @@ font pango:monospace 14
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -32,10 +32,10 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -47,12 +47,10 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id rofi -show run -theme Monokai
+bindsym $mod+Shift+d exec --no-startup-id rofi -show drun -theme Monokai -icon-theme "Tela-circle" -show-icons
 
 # change focus
 bindsym $mod+j focus left
@@ -179,13 +177,17 @@ gaps inner 10
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-}
+# finds out, if available). Commented out due to use of polybar. If you want to
+#use i3 bars (status or blocks) this is how you can do it.
+#bar {
+        #status_command i3status
+        #tray_output primary
+        #status_command i3status -c ~/.config/i3/i3status.conf
+        #status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#}
 
-#Polkit
-exec --no-startup-id /usr/bin/lxpolkit
+#Polkit (Used to launch GUI applications as root)
+exec_always --no-startup-id /usr/bin/lxpolkit
 
 #Display Wallpaper
 exec_always feh --bg-fill /usr/share/backgrounds/i3/wall.png
@@ -194,16 +196,38 @@ exec_always feh --bg-fill /usr/share/backgrounds/i3/wall.png
 exec_always picom -f
 
 #Lock Screen
-bindsym $mod+x exec i3lock
+bindsym $mod+x exec betterlockscreen -l
 
-# Launch a program on a certain workspace, from dmenu (which may or may not have a keybinding)
+# Launch a program on a certain workspace, from rofi (which may or may not have a keybinding)
 # for_window [class="nameofapp"] move to workspace $wsno
 for_window [class="firefox"] move to workspace $ws5
 
 
 # Here the programs are to be launched with a defined keybinding, on a certain workspace. Difference from above method is
 #1) You have a keybinding
-#2) You end up in that workspace.
+#2) Your program launches in that workspace.
 #Assign Programs to respective workspaces.
 bindsym $mod+b workspace 5; exec firefox
 
+#You should keep both the above lines of code for an application if you want to launch an application with a keybinding
+#and simultaneously move to that workspace. Make sure the workspace numbers are same.
+
+#Volume Control
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+
+#Brightness Control
+bindsym XF86MonBrightnessUp exec sudo xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec sudo xbacklight -dec 10
+
+#Multi Monitor (Dual Monitor, extended monitor)
+#Replace HDMI2 with DVI-2, VGA-2, DP-2, DVI-2 etc. Get value by typing xrandr in the terminal.
+#If X is a natural number, then;
+#eDP-X is the display used in Laptops.
+#HDMI-X is display used in Desktop connected to monitor with HDMI Cable.
+#VGA-X is display used in Desktop connected to monitor with VGA Cable.
+exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
+
+# Polybar Launch Script
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh

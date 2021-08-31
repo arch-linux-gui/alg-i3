@@ -59,7 +59,6 @@ mkinitcpio-archiso
 mkinitcpio-nfs-utils
 modemmanager
 mtools
-nano
 nbd
 ndisc6
 nfs-utils
@@ -93,6 +92,7 @@ udftools
 usb_modeswitch
 usbmuxd
 usbutils
+vim
 vpnc
 wireless-regdb
 wireless_tools
@@ -105,26 +105,41 @@ zsh
 #Arch Linux GUI i3 core
 xorg-server
 xorg-xrandr
+acpilight
 xdg-user-dirs
 bash-completion
 networkmanager
 network-manager-applet
+lightdm
 lightdm-gtk-greeter
 
 #Arch Linux GUI i3wm
 i3-gaps
-i3blocks
-i3lock
-i3status
 kitty
-dmenu
+rofi
 neofetch
-polkit
-lxsession
 feh
 picom
 paru
 lxappearance
+
+#auth policy
+polkit
+lxsession
+
+#icons & theme
+tela-circle-icon
+qogir-gtk-theme-git
+mcmojave-cursors
+
+#lockscreen
+betterlockscreen
+
+#polybar & deps
+polybar
+ttf-unifont
+siji
+xorg-fonts-misc
 
 #Installer
 grub
