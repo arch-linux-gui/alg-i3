@@ -121,12 +121,6 @@ picom
 paru
 lxappearance
 
-#auth policy
-#polkit
-#lxsession
-
-#Graphics Drivers
-mesa
 
 #icons & theme
 tela-circle-icon
@@ -142,11 +136,8 @@ ttf-unifont
 siji
 xorg-fonts-misc
 
-#Radeon Audio
-xf86-video-ati
-
 #Installer
 grub
 calamares
-alg-min-cala-config
+alg-pure-cala-config
 os-prober
