@@ -142,6 +142,9 @@ ttf-unifont
 siji
 xorg-fonts-misc
 
+#Radeon Audio
+xf86-video-ati
+
 #Installer
 grub
 calamares

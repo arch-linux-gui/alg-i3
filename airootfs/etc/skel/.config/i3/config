@@ -3,7 +3,7 @@
 #   Arch Linux GUI i3 WM Configuration File.   #
 #   Make a habit to read this file. You will   #
 #   find keybindings and various other         #
-#   settings here.Please see                   #
+#   settings here. Please see                  #
 #                                              #
 #       https://i3wm.org/docs/userguide.html   #
 #                                              #
@@ -64,13 +64,13 @@ exec_always picom -f
 bindsym $mod+x exec betterlockscreen -l
 
 # Shutdown the computer
-bindsym $mod+Shift+s exec shutdown now
+#bindsym $mod+Shift+s exec shutdown now
 
 #Reboot Machine
-bindsym $mod+r exec systemctl reboot
+#bindsym $mod+r exec systemctl reboot
 
 # Suspend the system to RAM (needs swap space)
-bindsym $mod+s exec systemctl suspend
+#bindsym $mod+s exec systemctl suspend
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
