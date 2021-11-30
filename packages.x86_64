@@ -109,6 +109,7 @@ bash-completion
 networkmanager
 network-manager-applet
 lightdm
+xf86-input-libinput
 lightdm-gtk-greeter
 
 #Arch Linux GUI i3wm
