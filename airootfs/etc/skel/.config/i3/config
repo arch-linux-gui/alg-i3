@@ -80,7 +80,7 @@ bindsym $mod+x exec betterlockscreen -l
 
 # The 4 lines of text above come from i3 documentation. Waking up from a suspended
 # system will launch betterlockscreen
-exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
