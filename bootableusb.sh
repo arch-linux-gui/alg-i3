@@ -1,4 +1,4 @@
-#Bootable USB Maker for ALG
+#Bootable USB Maker for Thakur OS
 #!/bin/bash
 #set -e
 #=================================================================================
@@ -12,7 +12,7 @@ echo "Welcome to Bootable USB Maker!"
 echo "We are making ALG Bootable USB, please wait..."
 echo "                               "
 
-#echo "Printing Partitions in Drive:" 
+#echo "Printing Partitions in Drive:"
 #lsblk
 
 echo "unmounting drive..."
@@ -23,7 +23,7 @@ umount /dev/sdb*
 
 echo "========================================================="
 echo "Formatting with ext4.."
-yes | sudo mkfs.ext4 /dev/sdb
+sudo mkfs.ext4 /dev/sdb
 
 echo "USB is Formatted.."
 
@@ -31,7 +31,7 @@ echo "                               "
 echo "================================================================"
 echo "Making ALG bootable USB, this may take sometime...."
 cd out
-sudo dd if=alg-i3-$(date +%Y.%m)-x86_64.iso of=/dev/sdb bs=2048 status='progress'
+sudo dd if=archlinux-gui-i3-$(date +%Y.%m)-x86_64.iso of=/dev/sdb status='progress'
 
 
 echo "D O N E! Your USB should be bootable now, with Arch Linux GUI."
